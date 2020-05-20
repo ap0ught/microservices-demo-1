@@ -12,11 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: productcatalogservice
 spec:
+  selector:
+    matchLabels:
+      app: productcatalogservice
   template:
     metadata:
       labels:
@@ -25,7 +28,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
-        image: productcatalogservice
+        image: gcr.io/accl-19-dev/productcatalogservice:accl-demo
         ports:
         - containerPort: 3550
         readinessProbe:

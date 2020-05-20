@@ -12,11 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: shippingservice
 spec:
+  selector:
+    matchLabels:
+      app: shippingservice
   template:
     metadata:
       labels:
@@ -24,7 +27,7 @@ spec:
     spec:
       containers:
       - name: server
-        image: shippingservice
+        image: gcr.io/accl-19-dev/shippingservice:accl-demo
         ports:
         - containerPort: 50051
         readinessProbe:
